@@ -40,8 +40,15 @@ public class Sandwich extends Product {
             case "12":
                 return 8.50;
             default:
-                return getBasePrice(); // fallback
+                return getBasePrice();
         }
 
+    }
+    @Override
+    public String toString() {
+        return "Sandwich: " + getName() +
+                " (" + size + " inch, " + breadType +
+                (toasted ? ", toasted" : ", not toasted") +
+                ") - $" + String.format("%.2f", getPrice());
     }
 }
