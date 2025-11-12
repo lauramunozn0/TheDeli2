@@ -29,4 +29,19 @@ public class Sandwich extends Product {
         this.toasted = toasted;
 
     }
+
+    @Override
+    public double getPrice() {
+        switch (size) {
+            case "4":
+                return 5.50;
+            case "8":
+                return 7.00;
+            case "12":
+                return 8.50;
+            default:
+                return getBasePrice(); // fallback
+        }
+
+    }
 }
