@@ -39,8 +39,37 @@ public class Order {
     }
 
     private void addItem() {
-        System.out.println("Item added (placeholder).");
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("What would you like to add?");
+            System.out.println("1) Sandwich");
+            System.out.println("2) Drink");
+            System.out.println("3) Chip");
+            System.out.println("0) Back");
+            System.out.print("Enter choice: ");
+            choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1 -> addSandwich(scanner);
+                case 2 -> addDrink(scanner);
+                case 3 -> addChip(scanner);
+                case 0 -> System.out.println("Returning to order menu...");
+                default -> System.out.println("Invalid choice.");
+            }
+        } while (choice != 0);
     }
+    private void addDrink(Scanner scanner) {
+        System.out.print("Enter drink name (e.g., Coke, Sprite): ");
+        String name = scanner.nextLine();
+        System.out.print("Enter size (Small / Medium / Large): ");
+        String size = scanner.nextLine();
+
+        Drink drink = new Drink(name, 0, size);
+        products.add(drink);
+
+        System.out.println(drink + " added to order.");
 
     private double getTotal() {
         double total = 0;
@@ -49,4 +78,5 @@ public class Order {
         }
         return total;
     }
+
 }
