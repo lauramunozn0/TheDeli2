@@ -89,6 +89,7 @@ public class Order {
         products.add(sandwich);
         System.out.println(sandwich + " added to order.");
     }
+    private void addToppings(Scanner scanner, Sandwich sandwich) {}
 
     private void addChip(Scanner scanner) {
         Chip chip = new Chip();
