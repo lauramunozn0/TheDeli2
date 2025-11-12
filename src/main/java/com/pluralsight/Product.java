@@ -16,4 +16,5 @@ public abstract class Product {
     public double getBasePrice() {
         return basePrice;
     }
+    public abstract double getPrice();
 }
