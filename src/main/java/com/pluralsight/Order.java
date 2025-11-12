@@ -22,10 +22,10 @@ public class Order {
 
         int choice;
         do {
-            System.out.print("Please Enter choice: ");
             System.out.println("1) Add Item");
             System.out.println("2) Get Total");
             System.out.println("0) Finish Order");
+            System.out.print("Please Enter choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
 
@@ -71,8 +71,30 @@ public class Order {
 
         System.out.println(drink + " added to order.");
     }
-    private void addSandwich(Scanner scanner) { System.out.println("Sandwich"); }
-    private void addChip(Scanner scanner) { System.out.println("Chip"); }
+    private void addSandwich(Scanner scanner) {
+        System.out.print("Enter sandwich name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Choose bread type (white, wheat, rye, wrap): ");
+        String breadType = scanner.nextLine();
+
+        System.out.print("Choose size (4, 8, 12): ");
+        String size = scanner.nextLine();
+
+        System.out.print("Toasted? (Y/N): ");
+        boolean toasted = scanner.nextLine().equalsIgnoreCase("Y");
+
+        Sandwich sandwich = new Sandwich(name, 0, size, breadType, toasted);
+
+        products.add(sandwich);
+        System.out.println(sandwich + " added to order.");
+    }
+
+    private void addChip(Scanner scanner) {
+        Chip chip = new Chip();
+        products.add(chip);
+        System.out.println(chip + " added to order.");
+    }
 
     private double getTotal() {
         double total = 0;
