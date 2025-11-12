@@ -61,7 +61,7 @@ public class Order {
         } while (choice != 0);
     }
     private void addDrink(Scanner scanner) {
-        System.out.print("Enter drink name (e.g., Coke, Sprite): ");
+        System.out.print("Enter drink name (Coke or Sprite): ");
         String name = scanner.nextLine();
         System.out.print("Enter size (Small / Medium / Large): ");
         String size = scanner.nextLine();
@@ -70,6 +70,9 @@ public class Order {
         products.add(drink);
 
         System.out.println(drink + " added to order.");
+    }
+    private void addSandwich(Scanner scanner) { System.out.println("Sandwich"); }
+    private void addChip(Scanner scanner) { System.out.println("Chip"); }
 
     private double getTotal() {
         double total = 0;
