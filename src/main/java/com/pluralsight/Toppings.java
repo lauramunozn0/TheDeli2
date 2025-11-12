@@ -1,4 +1,4 @@
 package com.pluralsight;
 
-public class Toppings {
+public abstract class Toppings {
 }

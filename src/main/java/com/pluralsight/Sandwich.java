@@ -1,4 +1,4 @@
 package com.pluralsight;
 
-public class Sandwich {
+public class Sandwich extends Product {
 }

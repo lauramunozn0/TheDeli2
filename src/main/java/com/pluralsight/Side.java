@@ -1,4 +1,4 @@
 package com.pluralsight;
 
-public class Side {
+public class Side extends Toppings{
 }

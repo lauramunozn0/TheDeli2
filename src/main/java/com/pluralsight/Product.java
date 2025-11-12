@@ -1,4 +1,4 @@
 package com.pluralsight;
 
-public class Product {
+public abstract class Product {
 }

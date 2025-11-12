@@ -1,4 +1,4 @@
 package com.pluralsight;
 
-public class Chip {
+public class Chip extends Product{
 }
