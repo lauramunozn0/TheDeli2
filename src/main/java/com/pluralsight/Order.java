@@ -133,9 +133,12 @@ public class Order {
                     sandwich.addTopping(new Regular(regName, isExtra));
                 }
                 case 5 -> {
+                    System.out.println("Choose from: mayo, mustard, ketchup, ranch, thousand islands, vinaigrette");
                     System.out.print("Enter sauce name: ");
                     String sauceName = scanner.nextLine();
-                    sandwich.addTopping(new Sauce(sauceName));
+                    System.out.print("Add extra sauce? (Y/N): ");
+                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
+                    sandwich.addTopping(new Sauce(sauceName, isExtra));
                 }
                 case 0 -> System.out.println("Finished adding toppings.");
                 default -> System.out.println("Invalid choice.");
