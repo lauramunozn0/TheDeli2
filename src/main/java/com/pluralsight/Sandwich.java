@@ -38,5 +38,48 @@ public class Sandwich extends Product {
         toppings.add(topping);
     }
 
+    @Override
+    public double getPrice() {
+        double total = 0;
+
+        // Base price based on size
+        switch (size) {
+            case "4" -> total = 5.50;
+            case "8" -> total = 7.00;
+            case "12" -> total = 8.50;
+            default -> total = getBasePrice();
+        }
+
+        // Add topping prices
+        for (Toppings t : toppings) {
+            total += t.getPrice();
+        }
+
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Sandwich: ")
+                .append(getName())
+                .append(" (")
+                .append(size)
+                .append(" inch, ")
+                .append(breadType)
+                .append(toasted ? ", toasted" : ", not toasted")
+                .append(") - $")
+                .append(String.format("%.2f", getPrice()));
+
+        if (!toppings.isEmpty()) {
+            sb.append("\n  Toppings:");
+            for (Toppings t : toppings) {
+                sb.append("\n    - ").append(t.toString());
+            }
+        }
+
+        return sb.toString();
+    }
+
 
 }
