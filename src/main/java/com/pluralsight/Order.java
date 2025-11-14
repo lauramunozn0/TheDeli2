@@ -8,10 +8,20 @@ public class Order {
     private String phoneNumber;
 
     private ArrayList<Product> products = new ArrayList<>();
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
 
     public void setCustomerInfo(String name, String phone) {
         this.customerName = name;
         this.phoneNumber = phone;
+    }
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void addDrink(String name, String size) {

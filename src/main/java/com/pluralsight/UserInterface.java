@@ -38,23 +38,7 @@ public class UserInterface {
 
         order.setCustomerInfo(name, phone);
 
-        int choice;
-        do {
-            System.out.println("\n==== ORDER MENU ====");
-            System.out.println("1) Add Item");
-            System.out.println("2) Get Total");
-            System.out.println("0) Finish Order");
-            System.out.print("Enter choice: ");
-            choice = Integer.parseInt(scanner.nextLine());
-
-            switch (choice) {
-                case 1 -> addItem(order);
-                case 2 -> System.out.println("Total: $" + order.getTotal());
-                case 0 -> System.out.println("Order complete!");
-                default -> System.out.println("Invalid choice.");
-            }
-
-        } while (choice != 0);
+        addItem(order);
     }
 
 
@@ -66,7 +50,8 @@ public class UserInterface {
             System.out.println("1) Sandwich");
             System.out.println("2) Drink");
             System.out.println("3) Chip");
-            System.out.println("0) Back");
+            System.out.println("4) Get Total");
+            System.out.println("0) Cancel Order");
             System.out.print("Enter choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
@@ -75,9 +60,20 @@ public class UserInterface {
                 case 1 -> addSandwich(order);
                 case 2 -> addDrink(order);
                 case 3 -> addChip(order);
-                case 0 -> System.out.println("Returning...");
+
+                case 4 -> {
+                    showTotalMenu(order);
+                    return;
+                }
+
+                case 0 -> {
+                    System.out.println("Order canceled. Returning to main menu.");
+                    return;
+                }
+
                 default -> System.out.println("Invalid choice.");
             }
+
         } while (choice != 0);
     }
 
@@ -321,5 +317,47 @@ public class UserInterface {
 
         sandwich.addTopping(new Side(sideName));
         System.out.println(sideName + " added.");
+    }
+
+    private void showTotalMenu(Order order) {
+        System.out.println("\n=== CURRENT TOTAL ===");
+        System.out.println("Total so far: $" + String.format("%.2f", order.getTotal()));
+
+        int choice;
+
+        do {
+            System.out.println("\n1) Checkout");
+            System.out.println("2) Add More Items");
+            System.out.println("0) Cancel Order");
+            System.out.print("Enter choice: ");
+
+            choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1 -> {
+                    checkout(order);
+                    return;
+                }
+                case 2 -> {
+                    System.out.println("Returning to Add Item menu...");
+                    return;
+                }
+                case 0 -> {
+                    System.out.println("Order canceled.");
+                    return;
+                }
+                default -> System.out.println("Invalid choice.");
+            }
+        } while (choice != 0);
+    }
+
+    private void checkout(Order order) {
+        System.out.println("\n===== CHECKOUT =====");
+        System.out.println("Customer: " + order.getCustomerName());
+        System.out.println("Phone: " + order.getPhoneNumber());
+        System.out.println("Final Total: $" + String.format("%.2f", order.getTotal()));
+
+
+        System.out.println("Thank you for your order!");
     }
 }
