@@ -98,8 +98,8 @@ public class UserInterface {
 
 
     private void addCustomSandwich(Order order) {
-        System.out.print("Enter sandwich name: ");
-        String name = scanner.nextLine();
+
+        String name = "Custom Sandwich";
 
         System.out.print("Choose bread type (white/wheat/rye/wrap): ");
         String breadType = scanner.nextLine();
@@ -348,13 +348,11 @@ public class UserInterface {
     }
 
     private void addBLT(Order order) {
-        System.out.print("Bread type (white/wheat/rye/wrap): ");
-        String bread = scanner.nextLine();
 
-        System.out.print("Toasted? (Y/N): ");
-        boolean toasted = scanner.nextLine().equalsIgnoreCase("Y");
+        System.out.println("BLT includes: white bread, toasted.");
+        System.out.println("Default toppings: bacon, cheddar, lettuce, tomato, ranch.");
 
-        BLT blt = new BLT(bread, toasted);
+        BLT blt = new BLT();
 
         System.out.print("Modify toppings? (Y/N): ");
         if (scanner.nextLine().equalsIgnoreCase("Y")) {
@@ -366,13 +364,11 @@ public class UserInterface {
     }
 
     private void addPhilly(Order order) {
-        System.out.print("Bread type (white/wheat/rye/wrap): ");
-        String bread = scanner.nextLine();
 
-        System.out.print("Toasted? (Y/N): ");
-        boolean toasted = scanner.nextLine().equalsIgnoreCase("Y");
+        System.out.println("Philly Cheesesteak includes: white bread, toasted.");
+        System.out.println("Default toppings: steak, American cheese, peppers, mayo.");
 
-        PhillyCheesesteak philly = new PhillyCheesesteak(bread, toasted);
+        PhillyCheesesteak philly = new PhillyCheesesteak();
 
         System.out.print("Modify toppings? (Y/N): ");
         if (scanner.nextLine().equalsIgnoreCase("Y")) {
