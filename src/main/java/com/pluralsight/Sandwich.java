@@ -43,16 +43,19 @@ public class Sandwich extends Product {
 
     @Override
     public double getPrice() {
-        double total = 0;
+        double total;
 
-
-        switch (size) {
-            case "4" -> total = 5.50;
-            case "8" -> total = 7.00;
-            case "12" -> total = 8.50;
-            default -> total = 0;
+        if (getBasePrice() > 0) {
+            total = getBasePrice();
         }
-
+        else {
+            switch (size) {
+                case "4" -> total = 5.50;
+                case "8" -> total = 7.00;
+                case "12" -> total = 8.50;
+                default -> total = 0;
+            }
+        }
 
         for (Toppings t : toppings) {
             total += t.getPrice();
@@ -60,6 +63,7 @@ public class Sandwich extends Product {
 
         return total;
     }
+
 
     @Override
     public String toString() {
