@@ -7,6 +7,8 @@ This project is a fully interactive Deli Ordering System designed to simulate th
 ## Demo
 https://yearuptemp-my.sharepoint.com/:wb:/g/personal/lmunoz_my_yearupunited_org/IQDJVegXX-SaQKSNJHmH3inwAUe6S_-eoCK8O3kU2boLA2w?e=aolkGE
 
+![BLT and Philly Cheese Steak](https://github.com/user-attachments/assets/d62c7880-caef-4b4f-b828-526058db7cc2)
+
 <img width="1449" height="847" alt="Screenshot 2025-11-14 at 10 40 18 AM" src="https://github.com/user-attachments/assets/a32e4d9c-0d64-4bc8-872b-d39b7216cfdb" />
 
 
@@ -30,5 +32,6 @@ Raymond
 Tutor
 Private tutor
 Andy and Nauman
+
 
 
