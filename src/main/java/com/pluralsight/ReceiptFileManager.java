@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -9,12 +10,21 @@ public class ReceiptFileManager {
 
     public static void saveReceipt(Order order) {
 
+        File receiptFolder = new File("Receipts");
+        if (!receiptFolder.exists()) {
+            receiptFolder.mkdir();
+        }
+
         String timestamp = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
 
         String fileName = "receipt-" + timestamp + ".txt";
 
-        try (FileWriter writer = new FileWriter(fileName)) {
+        File file = new File(receiptFolder, fileName);
+
+        System.out.println("Saving receipt to: " + file.getAbsolutePath());
+
+        try (FileWriter writer = new FileWriter(file)) {
 
             writer.write("==============================\n");
             writer.write("        DELI-cious Receipt\n");
@@ -48,7 +58,7 @@ public class ReceiptFileManager {
             writer.write("         DELI-cious!\n");
             writer.write("==============================\n");
 
-            System.out.println("Receipt saved as: " + fileName);
+            System.out.println("Receipt saved as: Receipts/" + fileName);
 
         } catch (IOException e) {
             System.out.println("Error saving receipt: " + e.getMessage());

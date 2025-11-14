@@ -63,25 +63,9 @@ public class Sandwich extends Product {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Sandwich: ")
-                .append(getName())
-                .append(" (")
-                .append(size).append(" inch, ")
-                .append(breadType)
-                .append(toasted ? ", toasted" : ", not toasted")
-                .append(")")
-                .append(" - $")
-                .append(String.format("%.2f", getPrice()));
-
-        if (!toppings.isEmpty()) {
-            sb.append("\n  Toppings:");
-            for (Toppings t : toppings) {
-                sb.append("\n    - ").append(t.toString());
-            }
-        }
-
-        return sb.toString();
+        return "Sandwich: " + getName() +
+                " (" + size + " inch, " + breadType +
+                (toasted ? ", toasted" : ", not toasted") + ")" +
+                " - $" + String.format("%.2f", getPrice());
     }
 }
