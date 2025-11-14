@@ -356,8 +356,10 @@ public class UserInterface {
         System.out.println("Customer: " + order.getCustomerName());
         System.out.println("Phone: " + order.getPhoneNumber());
         System.out.println("Final Total: $" + String.format("%.2f", order.getTotal()));
-
-
         System.out.println("Thank you for your order!");
+
+        ReceiptFileManager.saveReceipt(order);
+
+        System.out.println("Receipt has been saved.");
     }
 }

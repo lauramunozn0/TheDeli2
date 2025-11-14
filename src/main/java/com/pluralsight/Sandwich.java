@@ -37,6 +37,9 @@ public class Sandwich extends Product {
     public void addTopping(Toppings topping) {
         toppings.add(topping);
     }
+    public ArrayList<Toppings> getToppings() {
+        return toppings;
+    }
 
     @Override
     public double getPrice() {
