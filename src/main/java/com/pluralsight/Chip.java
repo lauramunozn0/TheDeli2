@@ -8,11 +8,11 @@ public class Chip extends Product {
 
     @Override
     public double getPrice() {
-        return 1.50;
+        return getBasePrice();
     }
 
     @Override
     public String toString() {
-        return "Chips - $" + String.format("%.2f", getPrice());
+        return getName() + " - $" + String.format("%.2f", getPrice());
     }
 }

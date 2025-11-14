@@ -1,19 +1,13 @@
 package com.pluralsight;
 
-public class Regular extends Toppings{
-    private boolean isExtra;
+public class Regular extends Toppings {
 
-    public Regular(String name, boolean isExtra) {
+    public Regular(String name) {
         super(name, 0.00);
-        this.isExtra = isExtra;
-    }
-
-    public boolean isExtra() {
-        return isExtra;
     }
 
     @Override
     public String toString() {
-        return getName() + (isExtra ? " (extra)" : "") + " (included)";
+        return getName() + " (included)";
     }
 }

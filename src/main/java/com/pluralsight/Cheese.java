@@ -1,50 +1,38 @@
 package com.pluralsight;
 
 public class Cheese extends Toppings {
-    private boolean isExtra;
 
     public Cheese(String name, boolean isExtra, String size) {
-        super(name, calculatePrice(size, isExtra));
-        this.isExtra = isExtra;
+        super(name, calculatePrice(isExtra, size));
     }
 
-    public boolean isExtra() {
-        return isExtra;
-    }
+    private static double calculatePrice(boolean isExtra, String size) {
+        double base;
+        double extra;
 
-    private static double calculatePrice(String size, boolean isExtra) {
-        double basePrice = 0.0;
-        double extraPrice = 0.0;
-
-        // 🧾 Base cheese price by sandwich size (from Capstone page 3)
         switch (size) {
-            case "4":
-                basePrice = 0.75;
-                extraPrice = 0.30;
-                break;
-            case "8":
-                basePrice = 1.50;
-                extraPrice = 0.60;
-                break;
-            case "12":
-                basePrice = 2.25;
-                extraPrice = 0.90;
-                break;
-            default:
-                basePrice = 0.0;
+            case "4" -> {
+                base = 0.75;
+                extra = 0.30;
+            }
+            case "8" -> {
+                base = 1.50;
+                extra = 0.60;
+            }
+            case "12" -> {
+                base = 2.25;
+                extra = 0.90;
+            }
+            default -> {
+                base = 0;
+                extra = 0;
+            }
         }
 
         if (isExtra) {
-            basePrice += extraPrice;
+            base += extra;
         }
 
-        return basePrice;
-    }
-
-    @Override
-    public String toString() {
-        return getName() +
-                (isExtra ? " (extra)" : "") +
-                " - $" + String.format("%.2f", getPrice());
+        return base;
     }
 }

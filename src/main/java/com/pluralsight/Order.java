@@ -1,163 +1,36 @@
 package com.pluralsight;
-import java.util.Scanner;
+
 import java.util.ArrayList;
 
 public class Order {
+
     private String customerName;
     private String phoneNumber;
-    private boolean isMember;
+
     private ArrayList<Product> products = new ArrayList<>();
-    public void startOrder() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter customer name: ");
-        customerName = scanner.nextLine();
-
-        System.out.print("Enter phone number: ");
-        phoneNumber = scanner.nextLine();
-
-        System.out.print("Are you a member? (Y/N): ");
-        String memberResponse = scanner.nextLine();
-        isMember = memberResponse.equalsIgnoreCase("Y");
-
-        int choice;
-        do {
-            System.out.println("1) Add Item");
-            System.out.println("2) Get Total");
-            System.out.println("0) Finish Order");
-            System.out.print("Please Enter choice: ");
-
-            choice = Integer.parseInt(scanner.nextLine());
-
-            switch (choice) {
-                case 1 -> addItem();
-                case 2 -> System.out.println("Total so far: $" + getTotal());
-                case 0 -> System.out.println("Order complete!");
-                default -> System.out.println("Invalid choice.");
-            }
-        } while (choice != 0);
+    public void setCustomerInfo(String name, String phone) {
+        this.customerName = name;
+        this.phoneNumber = phone;
     }
 
-    private void addItem() {
-        Scanner scanner = new Scanner(System.in);
-        int choice;
-
-        do {
-            System.out.println("What would you like to add?");
-            System.out.println("1) Sandwich");
-            System.out.println("2) Drink");
-            System.out.println("3) Chip");
-            System.out.println("0) Back");
-            System.out.print("Enter choice: ");
-            choice = Integer.parseInt(scanner.nextLine());
-
-            switch (choice) {
-                case 1 -> addSandwich(scanner);
-                case 2 -> addDrink(scanner);
-                case 3 -> addChip(scanner);
-                case 0 -> System.out.println("Returning to order menu...");
-                default -> System.out.println("Invalid choice.");
-            }
-        } while (choice != 0);
-    }
-    private void addDrink(Scanner scanner) {
-        System.out.print("Enter drink name (Coke or Sprite): ");
-        String name = scanner.nextLine();
-        System.out.print("Enter size (Small / Medium / Large): ");
-        String size = scanner.nextLine();
-
-        Drink drink = new Drink(name, 0, size);
-        products.add(drink);
-
-        System.out.println(drink + " added to order.");
-    }
-    private void addSandwich(Scanner scanner) {
-        System.out.print("Enter sandwich name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Choose bread type (white, wheat, rye, wrap): ");
-        String breadType = scanner.nextLine();
-
-        System.out.print("Choose size (4, 8, 12): ");
-        String size = scanner.nextLine();
-
-        System.out.print("Toasted? (Y/N): ");
-        boolean toasted = scanner.nextLine().equalsIgnoreCase("Y");
-
-        Sandwich sandwich = new Sandwich(name, 0, size, breadType, toasted);
-
-        products.add(sandwich);
-        System.out.println(sandwich + " added to order.");
-    }
-    private void addToppings(Scanner scanner, Sandwich sandwich) {
-        int choice;
-        do {
-            System.out.println("Add Toppings:");
-            System.out.println("1) Meat");
-            System.out.println("2) Cheese");
-            System.out.println("3) Regular");
-            System.out.println("4) Sauce");
-            System.out.println("5) Side");
-            System.out.println("0) Done adding toppings");
-            System.out.print("Enter choice: ");
-            choice = Integer.parseInt(scanner.nextLine());
-
-            switch (choice) {
-                case 1 -> {
-                    System.out.print("Enter meat name: ");
-                    String meatName = scanner.nextLine();
-                    System.out.print("Add extra meat? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Meat(meatName, isExtra, sandwich.getSize()));
-                }
-                case 2 -> {
-                    System.out.print("Enter cheese name: ");
-                    String cheeseName = scanner.nextLine();
-                    System.out.print("Add extra cheese? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Cheese(cheeseName, isExtra, sandwich.getSize()));
-                }
-                case 3 -> {
-                    System.out.print("Choose side (Au Jus or Sauce): ");
-                    String sideName = scanner.nextLine();
-                    System.out.print("Add extra side? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Side(sideName, isExtra));
-                }
-                case 4 -> {
-                    System.out.println("Choose from: lettuce, peppers, onions, tomatoes, jalapeños, cucumbers, pickles, guacamole, mushrooms");
-                    System.out.print("Enter regular topping name: ");
-                    String regName = scanner.nextLine();
-                    System.out.print("Add extra? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Regular(regName, isExtra));
-                }
-                case 5 -> {
-                    System.out.println("Choose from: mayo, mustard, ketchup, ranch, thousand islands, vinaigrette");
-                    System.out.print("Enter sauce name: ");
-                    String sauceName = scanner.nextLine();
-                    System.out.print("Add extra sauce? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Sauce(sauceName, isExtra));
-                }
-                case 0 -> System.out.println("Finished adding toppings.");
-                default -> System.out.println("Invalid choice.");
-            }
-        } while (choice != 0);
+    public void addDrink(String name, String size) {
+        products.add(new Drink(name, size));
     }
 
-    private void addChip(Scanner scanner) {
-        Chip chip = new Chip();
-        products.add(chip);
-        System.out.println(chip + " added to order.");
+    public void addChip() {
+        products.add(new Chip());
     }
 
-    private double getTotal() {
+    public void addSandwich(Sandwich s) {
+        products.add(s);
+    }
+
+    public double getTotal() {
         double total = 0;
         for (Product p : products) {
             total += p.getPrice();
         }
         return total;
     }
-
 }

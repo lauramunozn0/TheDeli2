@@ -4,8 +4,8 @@ public class Drink extends Product {
 
     private String size;
 
-    public Drink(String name, double basePrice, String size) {
-        super(name, basePrice);
+    public Drink(String name, String size) {
+        super(name, 0);
         this.size = size;
     }
 
@@ -27,7 +27,7 @@ public class Drink extends Product {
             case "large":
                 return 3.00;
             default:
-                return getBasePrice();
+                return 0;
         }
     }
 
